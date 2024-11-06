@@ -21,5 +21,5 @@ void makeInt(struct gf* in, int SIZE){
 	memset(in->num, 0, SIZE * sizeof(u64));
 	in->len = SIZE;
 }
-
+//https://github.com/0r-gh0/GALOIS
 #endif  // End include guard
