@@ -5,9 +5,10 @@ CFLAGS = -lcrypto -lssl
 
 # Targets
 all: run
+	@echo "Program Compiled! Run using ./run"
 
 run: main.c add_sub.h read.h
-	$(CC) main.c -o run $(CFLAGS)  # Make sure this line starts with a tab
+	$(CC) main.c -o run $(CFLAGS)
 
 clean:
-	rm -f run  # Make sure this line also starts with a tab
+	rm -f run
