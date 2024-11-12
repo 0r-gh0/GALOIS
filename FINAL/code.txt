@@ -1,0 +1,135 @@
+#ARRAY TO HEX
+
+def convert_to_hex(bit_string):
+    # Pad the bit string to the nearest multiple of 4 bits
+    padded_bit_string = bit_string.zfill((len(bit_string) + 3) // 4 * 4)
+    
+    # Convert the padded bit string to an integer
+    num = int(padded_bit_string, 2)
+    
+    # Convert the integer to a hexadecimal string
+    hex_string = hex(num)[2:]  # remove the '0x' prefix
+    return hex_string
+
+def group_bits_and_convert(bit_strings):
+    # Concatenate all the bit strings into one large string
+    concatenated_bits = ''.join(bit_strings)
+    
+    # Length of the concatenated bit string
+    total_length = len(concatenated_bits)
+    
+    # Group bits into 29-bit chunks starting from the end
+    groups = []
+    for i in range(total_length, 0, -29):
+        chunk = concatenated_bits[max(0, i-29):i]
+        groups.append(chunk)
+    
+    # Convert each group to hexadecimal and store the results
+    hex_values = [convert_to_hex(group) for group in groups]
+    
+    return hex_values
+
+# Provided bit strings
+bit_strings =  ["01101001000011101011001111011",
+        "10011101110011011111011101100",
+        "11111010000011011111111101000",
+        "01111100001101100110111111010",
+        "00010100010111100111011110000",
+        "11101000100011100100000101110",
+        "11110000001010010111101011010",
+        "01111110101011101011110111110",
+        "00000011010001101111000010110"]
+
+
+# Call the function to group and convert
+hex_values = group_bits_and_convert(bit_strings)
+
+# Print the hexadecimal values
+for hex_val in hex_values:
+    print(hex_val)
+
+############ OUT ############ 
+
+68de16
+fd5d7be
+1e052f5a
+1d11c82e
+28bcef0
+f86cdfa
+1f41bfe8
+13b9beec
+d21d67b
+
+############ DECIMAL TO BINARY ############ 
+
+# Define a large decimal number
+decimal_number = 105470615072424007464777057006017113535036866827082468263120632948849084329973
+
+# Convert the decimal number to binary (with '0b' prefix)
+binary_number = bin(decimal_number)
+
+# If you want to remove the '0b' prefix:
+binary_number_no_prefix = bin(decimal_number)[2:]
+
+print(f"Binary (with prefix): {binary_number}")
+print(f"Binary (without prefix): {binary_number_no_prefix}")
+
+############ OUT ############ 
+
+Binary (with prefix): 0b1110100100101110010000001010110101101111001010000001110010001010000010000010101011111101110001001001111000010011011100100110010110010100010101011011111011001000110011101110101000000100001110100110000101001100100000110101101101111111111010011110111111110101
+Binary (without prefix): 1110100100101110010000001010110101101111001010000001110010001010000010000010101011111101110001001001111000010011011100100110010110010100010101011011111011001000110011101110101000000100001110100110000101001100100000110101101101111111111010011110111111110101
+
+############ ARRAY TO BINARY ############ 
+
+# List of binary strings
+binary_array = [
+     "10100110110100110000100100000",
+        "01100001010100010001111111000",
+        "11010010000001001100000001111",
+        "10010110110111100101010011001",
+        "11101110110101001010001001110",
+        "11000111000011011010110100110",
+        "01110101110110101111011101111",
+        "11101011001110110100110001110",
+        "00000101111111111001110101110"
+]
+
+# Reverse the array and join the elements
+reversed_binary_string = ''.join(reversed(binary_array))
+
+# Output the resulting joined binary string
+print(reversed_binary_string)
+
+############ OUT ############ 
+
+000001011111111110011101011101110101100111011010011000111001110101110110101111011101111110001110000110110101101001101110111011010100101000100111010010110110111100101010011001110100100000010011000000011110110000101010001000111111100010100110110100110000100100000
+
+############ BINARY MULTIPLICATION ############ 
+
+# Define the large prime (in binary)
+large_prime_binary = "1110100100101110010000001010110101101111001010000001110010001010000010000010101011111101110001001001111000010011011100100110010110010100010101011011111011001000110011101110101000000100001110100110000101001100100000110101101101111111111010011110111111110101"
+
+# Define the two large binary numbers you want to multiply
+binary_num1 = "100001011110000011001111111111110111101011010011001111001010100011100100100000111001110001111000101010001010101101101100010110110000001111110111010000001011100011011110100100000000011101010100101000101110000110010011101011000111000010111110100100101011001"
+binary_num2 = "1011111111110011101011101110101100111011010011000111001110101110110101111011101111110001110000110110101101001101110111011010100101000100111010010110110111100101010011001110100100000010011000000011110110000101010001000111111100010100110110100110000100100000"
+
+# Convert binary numbers to integers
+num1 = int(binary_num1, 2)
+num2 = int(binary_num2, 2)
+large_prime = int(large_prime_binary, 2)
+
+# Perform multiplication and take the result modulo large_prime
+result = (num1 * num2) % large_prime
+
+# Convert the result back to binary
+result_binary = bin(result)[2:]  # [2:] to remove the '0b' prefix
+
+# Print the result
+print("Multiplication Result in Binary (modulo large prime):")
+print(result_binary)
+
+############ OUT ############ 
+
+Multiplication Result in Binary (modulo large prime):
+110100011011110000101100111111010101110101111011111011110000001010010111101011010111010001000111001000001011100001010001011110011101111000001111100001101100110111111010111110100000110111111111010001001110111001101111101110110001101001000011101011001111011
+
