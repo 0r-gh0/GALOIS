@@ -3,6 +3,7 @@
 #include "add_sub.h"
 #include "mul.h"
 
+
 // Multiplication of two multi-precision integers
 void Mul(gf a, gf b, gf* res) {
     // Reset result to zero to prevent accumulation
@@ -43,7 +44,7 @@ void Mul(gf a, gf b, gf* res) {
 }
 
 // Barrett Reduction implementation
-void BReduction(gf x, gf* res) {
+void BReduction(gf x, gf* res, gf p, gf mu) {
     // Create temporary variables with appropriate sizes
     gf q1 = initlz(10); 
     gf q2 = initlz(20);
@@ -66,11 +67,11 @@ void BReduction(gf x, gf* res) {
     Mul(q1, p, &q4);
 
     // Step 5: Subtract q4 from original number
-    Sub(x, q4, &q4);
+    Sub(x, q4, &q4, p);
 
     // Step 6: Reduce if result is larger than prime
     while(compare(p, q4)) { 
-        Sub(q4, p, &q4);
+        Sub(q4, p, &q4, p);
     }
 
     // Step 7: Copy final reduced value to result
@@ -83,7 +84,7 @@ void BReduction(gf x, gf* res) {
 }
 
 // Multiplication in Zp (modulo prime)
-void MultInZp(gf a, gf b, gf* res) {
+void MultInZp(gf a, gf b, gf* res, gf p, gf mu) {
     // Create temporary variable for full multiplication result
     gf temp = initlz(18); 
     
@@ -91,7 +92,7 @@ void MultInZp(gf a, gf b, gf* res) {
     Mul(a, b, &temp);
     
     // Reduce using Barrett reduction
-    BReduction(temp, res);
+    BReduction(temp, res, p, mu);
     
     // Clean up temporary variable
     free_gf(&temp);

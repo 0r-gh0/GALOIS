@@ -42,8 +42,7 @@ void Add(gf a, gf b, gf* res) {
     }
 }
 
-// Subtraction of two multi-precision integers
-void Sub(gf a, gf b, gf* res) {
+void Sub(gf a, gf b, gf* res, gf p) {
     u64 borrow = 0;
     
     // Iterate through all chunks
@@ -52,7 +51,7 @@ void Sub(gf a, gf b, gf* res) {
         u64 a_val = a.num[i];
         u64 b_val = (i < b.size) ? b.num[i] : 0;
         
-        // Add 2^29 to handle negative results
+        // Add p to handle negative results
         u64 adjusted_a = a_val + (borrow ? 0 : 0x20000000);
         u64 adjusted_b = b_val + (borrow ? 1 : 0);
         
@@ -70,13 +69,14 @@ void Sub(gf a, gf b, gf* res) {
     }
 }
 
+
 // Addition in Zp (modulo prime)
-void AddInZp(gf a, gf b, gf* res) {
+void AddInZp(gf a, gf b, gf* res, gf p) {
     // Perform standard addition
     Add(a, b, res);
     
     // If result is greater than or equal to prime, subtract prime
     if (!compare(*res, p)) {
-        Sub(*res, p, res);
+        Sub(*res, p, res, p);
     }
 }

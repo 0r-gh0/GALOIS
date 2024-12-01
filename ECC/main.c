@@ -1,4 +1,3 @@
-#include "main.h"
 #include "utils.h"
 #include "add_sub.h"
 #include "mul.h"
@@ -7,9 +6,11 @@
 // Global constants for Galois Field arithmetic
 gf g, p, mu;
 
+// Initialize global constants
+
 int main() {
-    // Initialize global constants
-    // Prime modulus p
+    // Example usage demonstration
+	// Prime modulus p
     p = initlz(9);
     p.num[0] = 535425013;
     p.num[1] = 174332635;
@@ -34,7 +35,6 @@ int main() {
     mu.num[8] = 70628772;
     mu.num[9] = 35;
 
-    // Example usage demonstration
     gf a = initlz(9);
     a.num[0] = 4;
     a.num[3] = 12;
@@ -52,19 +52,19 @@ int main() {
     
     // Demonstrate addition
     printf("Addition Demonstration:\n");
-    AddInZp(a, b, &result);
+    AddInZp(a, b, &result, p);
     printf("a + b (mod p) : ");
     print_gf(&result);
     
     // Demonstrate subtraction
     printf("\nSubtraction Demonstration:\n");
-    Sub(a, b, &result);
+    Sub(a, b, &result, p);
     printf("a - b (mod p) : ");
     print_gf(&result);
     
     // Demonstrate multiplication in Zp
     printf("\nMultiplication in Z_p Demonstration:\n");
-    MultInZp(a, b, &result);
+    MultInZp(a, b, &result, p, mu);
     printf("a * b (mod p): ");
     print_gf(&result);
     
@@ -83,17 +83,17 @@ int main() {
 
     // Perform and compare different exponentiation methods
     printf("\n1. Right-to-Left Binary Method:\n");
-    Exp_RTL(base, exp, &res);
+    Exp_RTL(base, exp, &res, p, mu);
     printf("Result (RTL): ");
     print_gf(&res);
 
     printf("\n2. Left-to-Right Binary Method:\n");
-    Exp_LTR(base, exp, &res);
+    Exp_LTR(base, exp, &res, p, mu);
     printf("Result (LTR): ");
     print_gf(&res);
 
     printf("\n3. Efficient Left-to-Right Method:\n");
-    Exp_LTR_e(base, exp, &res);
+    Exp_LTR_e(base, exp, &res, p, mu);
     printf("Result (LTR Efficient): ");
     print_gf(&res);
 

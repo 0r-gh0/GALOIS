@@ -11,9 +11,9 @@ int compare(gf a, gf b);
 void Add(gf a, gf b, gf* res);
 
 // Subtraction of two multi-precision integers
-void Sub(gf a, gf b, gf* res);
+void Sub(gf a, gf b, gf* res, gf p);
 
 // Addition in Zp (modulo prime)
-void AddInZp(gf a, gf b, gf* res);
+void AddInZp(gf a, gf b, gf* res, gf p);
 
 #endif // ADD_SUB_H

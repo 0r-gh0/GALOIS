@@ -9,9 +9,9 @@
 void Mul(gf a, gf b, gf* res);
 
 // Barrett Reduction implementation
-void BReduction(gf x, gf* res);
+void BReduction(gf x, gf* res, gf p, gf mu);
 
 // Multiplication in Zp (modulo prime)
-void MultInZp(gf a, gf b, gf* res);
+void MultInZp(gf a, gf b, gf* res, gf p, gf mu);
 
 #endif // MUL_H

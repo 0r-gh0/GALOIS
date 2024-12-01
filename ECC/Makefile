@@ -1,33 +1,44 @@
+# Makefile for Galois Field Arithmetic Program
+
 # Compiler
 CC = gcc
 
 # Compiler flags
-CFLAGS = -w
-
-# Output file
-OUTPUT = run
+CFLAGS = -Wall -Wextra -g
 
 # Source files
-SRC = main.c utils.c mul.c exp.c
+SRCS = main.c utils.c add_sub.c mul.c exp.c
 
-# Header files (for clarity, not explicitly needed in compilation)
-HEADERS = main.h utils.h add_sub.h mul.h exp.h
+# Object files directory
+OBJ_DIR = obj
 
 # Object files
-OBJS = $(SRC:.c=.o)
+OBJS = $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRCS))
+
+# Executable name
+EXEC = run
+
+# Create obj directory
+$(shell mkdir -p $(OBJ_DIR))
 
 # Default target
-all: $(OUTPUT)
-		@echo "RUN! It using ./$(OUTPUT)"
+all: $(EXEC)
+	@echo "Run it using ./run"
 
-# Link the object files to create the executable
-$(OUTPUT): $(OBJS)
-		$(CC) $(CFLAGS) -o $@ $^
+# Linking the program
+$(EXEC): $(OBJS)
+	$(CC) $(CFLAGS) -o $@ $^
 
-# Compile each .c file into .o file
-%.o: %.c $(HEADERS)
-		$(CC) $(CFLAGS) -c $< -o $@
+# Compiling source files into object files
+$(OBJ_DIR)/%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
-# Clean up
+# Clean up compiled files
 clean:
-		rm -f $(OBJS) $(OUTPUT)
+	rm -rf $(OBJ_DIR) $(EXEC)
+
+# Separate run target without dependencies
+execute:
+	./$(EXEC)
+
+.PHONY: all clean run execute
