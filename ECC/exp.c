@@ -76,7 +76,7 @@ void Exp_LTR_e(gf base, gf exp, gf* res) {
             
             // Use bitwise masking to conditionally multiply
             gf temp_result;
-            temp_result = init(res->size);
+            temp_result = initlz(res->size);
             MultInZp(*res, base, &temp_result);
             
             // Conditionally update result using bit mask

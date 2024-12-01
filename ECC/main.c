@@ -10,7 +10,7 @@ gf g, p, mu;
 int main() {
     // Initialize global constants
     // Prime modulus p
-    p = init(9);
+    p = initlz(9);
     p.num[0] = 535425013;
     p.num[1] = 174332635;
     p.num[2] = 444665496;
@@ -22,7 +22,7 @@ int main() {
     p.num[8] = 15281728;
 
     // Precomputed reduction constant mu
-    mu = init(10);
+    mu = initlz(10);
     mu.num[0] = 450887704;
     mu.num[1] = 490307913;
     mu.num[2] = 387807083;
@@ -35,15 +35,15 @@ int main() {
     mu.num[9] = 35;
 
     // Example usage demonstration
-    gf a = init(9);
+    gf a = initlz(9);
     a.num[0] = 4;
     a.num[3] = 12;
     
-    gf b = init(9);
+    gf b = initlz(9);
     b.num[0] = 10;
     b.num[1] = 10;
     
-    gf result = init(9);
+    gf result = initlz(9);
     
     printf("a : ");
     print_gf(&a);
@@ -68,9 +68,9 @@ int main() {
     printf("a * b (mod p): ");
     print_gf(&result);
     
-    gf base = init(9);
-    gf exp = init(9);
-    gf res = init(9);
+    gf base = initlz(9);
+    gf exp = initlz(9);
+    gf res = initlz(9);
     // Example values
     base.num[0] = 2;     // Base: 2
     exp.num[0] = 29;     // Exponent: 29

@@ -45,9 +45,9 @@ void Mul(gf a, gf b, gf* res) {
 // Barrett Reduction implementation
 void BReduction(gf x, gf* res) {
     // Create temporary variables with appropriate sizes
-    gf q1 = init(10); 
-    gf q2 = init(20);
-    gf q4 = init(19);
+    gf q1 = initlz(10); 
+    gf q2 = initlz(20);
+    gf q4 = initlz(19);
 
     // Step 1: Extract relevant chunks from x
     for (int i = 0; i < 10; i++) { 
@@ -85,7 +85,7 @@ void BReduction(gf x, gf* res) {
 // Multiplication in Zp (modulo prime)
 void MultInZp(gf a, gf b, gf* res) {
     // Create temporary variable for full multiplication result
-    gf temp = init(18); 
+    gf temp = initlz(18); 
     
     // Perform multiplication
     Mul(a, b, &temp);

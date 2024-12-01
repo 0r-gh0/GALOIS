@@ -2,7 +2,7 @@
 #include "utils.h"
 
 // Initialize a multi-precision integer with given size
-gf init(int size) {
+gf initlz(int size) {
     // Allocate memory for the number array
     gf result;
     result.num = (u64*)calloc(size, sizeof(u64));
