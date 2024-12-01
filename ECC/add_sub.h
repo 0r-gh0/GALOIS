@@ -16,4 +16,7 @@ void Sub(gf a, gf b, gf* res, gf p);
 // Addition in Zp (modulo prime)
 void AddInZp(gf a, gf b, gf* res, gf p);
 
+// Convert (-x) into a number in Zp
+void ConvrtInZp(gf a, gf* res, gf p);
+
 #endif // ADD_SUB_H

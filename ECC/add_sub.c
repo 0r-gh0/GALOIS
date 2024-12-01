@@ -80,3 +80,10 @@ void AddInZp(gf a, gf b, gf* res, gf p) {
         Sub(*res, p, res, p);
     }
 }
+
+
+// Convert (-x) into a number in Zp
+void ConvrtInZp(gf a, gf* res, gf p)
+{
+    Sub(p, a, res, p);
+}
